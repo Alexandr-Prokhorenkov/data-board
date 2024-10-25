@@ -1,0 +1,11 @@
+.bar {
+  background-color: black !important;
+}
+
+.container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 50px;
+  gap: 10px;
+}

@@ -1,0 +1,9 @@
+.registerContainer {
+  width: 20%;
+  margin-top: 16%;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  gap: 30px;
+}
