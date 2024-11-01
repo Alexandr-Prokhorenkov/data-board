@@ -2,8 +2,8 @@ import React from "react";
 import classes from "./FormRegistration.module.css";
 import { Box, Button, FormGroup, TextField } from "@mui/material";
 import { Controller } from "react-hook-form";
-import { RegisterData } from "../../types/types";
 import { Control, SubmitHandler } from "react-hook-form";
+import { RegisterData } from "../../services/slices/userSliceTypes";
 
 export type FormRegistrationProps = {
   control: Control<RegisterData>;

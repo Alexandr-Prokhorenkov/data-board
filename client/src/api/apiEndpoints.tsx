@@ -1,6 +1,8 @@
 import axios, { AxiosResponse } from "axios";
-import { LineChartResponse, DateResponse, DeleteResponse, RecordData, RegisterData, RegisterResponse, TableResponse, BarChartResponse } from "../types/types";
-import { BarChartProps } from "@mui/x-charts";
+import { fetchData } from "./apiUtils";
+import { BarChartResponse, LineChartResponse } from "../services/slices/chartsSliceTypes";
+import { DateResponse, DeleteResponse, RecordData, TableResponse } from "../services/slices/tableSliceTypes";
+import { RegisterData, RegisterResponse } from "../services/slices/userSliceTypes";
 
 export const registerUserApi = async (data: RegisterData): Promise<RegisterResponse> => {
   try {
@@ -22,47 +24,16 @@ export const registerUserApi = async (data: RegisterData): Promise<RegisterRespo
   }
 };
 
-export const getTableData = async (token: string): Promise<TableResponse> => {
-  try {
-    const response: AxiosResponse<TableResponse> = await axios.get("http://localhost:5000/data", {
-      headers: {
-        "x-auth": token,
-      },
-    });
-    return response.data;
-  } catch (error) {
-    console.error("Error fetching table data:", error);
-    throw error;
-  }
+export const getTableData = (token: string): Promise<TableResponse> => {
+  return fetchData<TableResponse>("http://localhost:5000/data", token);
 };
 
-
-export const fetchLineChartData = async (token: string): Promise<LineChartResponse> => {
-  try {
-    const response: AxiosResponse<LineChartResponse> = await axios.get("http://localhost:5000/lineChartData", {
-      headers: {
-        "x-auth": token,
-      },
-    });
-    return response.data;
-  } catch (error) {
-    console.error("Error fetching table data:", error);
-    throw error;
-  }
+export const fetchLineChartData = (token: string): Promise<LineChartResponse> => {
+  return fetchData<LineChartResponse>("http://localhost:5000/lineChartData", token);
 };
 
-export const fetchBarChartData = async (token: string): Promise<BarChartResponse> => {
-  try {
-    const response: AxiosResponse<BarChartResponse> = await axios.get("http://localhost:5000/barChartData", {
-      headers: {
-        "x-auth": token,
-      },
-    });
-    return response.data;
-  } catch (error) {
-    console.error("Error fetching table data:", error);
-    throw error;
-  }
+export const fetchBarChartData = (token: string): Promise<BarChartResponse> => {
+  return fetchData<BarChartResponse>("http://localhost:5000/barChartData", token);
 };
 
 export const addRecordApi = async (token: string, recordData: RecordData): Promise<DateResponse> => {

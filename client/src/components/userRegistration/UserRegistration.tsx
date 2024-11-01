@@ -5,11 +5,12 @@ import classes from "./UserRegistration.module.css";
 import { useDispatch, useSelector } from "react-redux";
 import { registerUser } from "../../services/slices/userSlice";
 import { getTable } from "../../services/slices/tableSlice";
-import { AppDispatch, RootState } from "../../services/store/store";
-import { RegisterData } from "../../types/types";
+import { AppDispatch } from "../../services/store/store";
 import { useNavigate } from "react-router-dom";
 import PreLoader from "../preLoader/PreLoader";
 import FormRegistration from "../formRegistration/FormRegistration";
+import { selectloadingUser } from "../../services/selectors/selectors";
+import { RegisterData } from "../../services/slices/userSliceTypes";
 
 const UserRegistration = () => {
   const dispatch: AppDispatch = useDispatch();
@@ -21,7 +22,7 @@ const UserRegistration = () => {
     },
   });
 
-  const isLoading = useSelector((state: RootState) => state.user.isLoading);
+  const isLoading = useSelector(selectloadingUser);
   const [loading, setLoading] = useState(false);
 
   const onSubmit = async (data: RegisterData) => {

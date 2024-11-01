@@ -1,32 +1,6 @@
 import { createAsyncThunk, createSlice, PayloadAction } from "@reduxjs/toolkit";
-import { getTableData, addRecordApi, deleteRecordApi, updateRecordApi } from "../../utils/api";
-import { DateResponse, DeleteResponse, TableRecord, TableResponse } from "../../types/types";
-
-interface TableState {
-  data: TableRecord[];
-  isLoading: boolean;
-  error: string | null;
-}
-
-interface GetTablePayload {
-  token: string;
-}
-
-interface AddRecordPayload {
-  token: string;
-  recordData: TableRecord;
-}
-
-interface DeleteRecordPayload {
-  token: string;
-  id: string;
-}
-
-interface UpdateRecordPayload {
-  token: string;
-  id: string;
-  recordData: TableRecord;
-}
+import { getTableData, addRecordApi, deleteRecordApi, updateRecordApi } from "../../api/apiEndpoints";
+import { AddRecordPayload, DateResponse, DeleteRecordPayload, DeleteResponse, GetTablePayload, TableRecord, TableResponse, TableState, UpdateRecordPayload } from "./tableSliceTypes";
 
 export const getTable = createAsyncThunk<TableRecord[], GetTablePayload, { rejectValue: string }>("table/getTable", async ({ token }, { rejectWithValue }) => {
   try {

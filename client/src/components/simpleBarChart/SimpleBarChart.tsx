@@ -1,6 +1,6 @@
 import React from "react";
 import { BarChart } from "@mui/x-charts/BarChart";
-import { BarChartData } from "../../types/types";
+import { BarChartData } from "../../services/slices/chartsSliceTypes";
 
 interface SimpleBarChartProps {
   barChartData: BarChartData;

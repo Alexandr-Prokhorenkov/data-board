@@ -1,10 +1,6 @@
 import { createAsyncThunk, createSlice } from "@reduxjs/toolkit";
-import { BarChartData, LineChartResponse, LineChartData, BarChartResponse } from "../../types/types";
-import { fetchBarChartData, fetchLineChartData } from "../../utils/api";
-
-interface GetChartPayload {
-  token: string;
-}
+import { fetchBarChartData, fetchLineChartData } from "../../api/apiEndpoints";
+import { BarChartData, BarChartResponse, ChartState, GetChartPayload, LineChartData, LineChartResponse } from "./chartsSliceTypes";
 
 export const getLineChartData = createAsyncThunk<LineChartData, GetChartPayload, { rejectValue: string }>("charts/getLine", async ({ token }, { rejectWithValue }) => {
   try {
@@ -31,13 +27,6 @@ export const getBarChartData = createAsyncThunk<BarChartData, GetChartPayload, {
     return rejectWithValue(error.message);
   }
 });
-
-interface ChartState {
-  lineChartData: LineChartData;
-  barChartData: BarChartData;
-  isLoading: boolean;
-  error: string | null;
-}
 
 const initialState: ChartState = {
   lineChartData: {

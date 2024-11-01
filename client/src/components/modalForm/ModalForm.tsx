@@ -2,7 +2,7 @@ import React, { useCallback, useEffect, useState } from "react";
 import { Modal, Box, Button, TextField, Typography, IconButton } from "@mui/material";
 import CloseIcon from "@mui/icons-material/Close";
 import classes from "./ModalForm.module.css";
-import { TableRecord } from "../../types/types";
+import { TableRecord } from "../../services/slices/tableSliceTypes";
 
 interface ModalFormProps {
   open: boolean;

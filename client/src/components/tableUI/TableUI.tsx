@@ -3,7 +3,7 @@ import { Box, Button, IconButton, Table, TableBody, TableCell, TableHead, TableR
 import DeleteIcon from "@mui/icons-material/Delete";
 import EditIcon from "@mui/icons-material/Edit";
 import classes from "./TableUI.module.css";
-import { TableRecord } from "../../types/types";
+import { TableRecord } from "../../services/slices/tableSliceTypes";
 
 interface TableUIProps {
   tableData: TableRecord[];

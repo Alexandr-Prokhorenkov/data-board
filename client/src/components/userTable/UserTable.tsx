@@ -2,20 +2,22 @@ import React, { useCallback, useEffect, useState, memo } from "react";
 import { Box, Typography } from "@mui/material";
 import classes from "./UserTable.module.css";
 import { useDispatch, useSelector } from "react-redux";
-import { AppDispatch, RootState } from "../../services/store/store";
+import { AppDispatch } from "../../services/store/store";
 import { addNewRecord, deleteRecord, getTable, updateRecord } from "../../services/slices/tableSlice";
 import { useNavigate } from "react-router-dom";
 import TableUI from "../tableUI/TableUI";
-import { BarChartData, LineChartData, TableRecord } from "../../types/types";
 import ModalForm from "../modalForm/ModalForm";
 import SimpleLineChart from "../simpleLineChart/SimpleLineChart";
 import SimpleBarChart from "../simpleBarChart/SimpleBarChart";
 import { getBarChartData, getLineChartData } from "../../services/slices/chartsSlice";
+import { selectBarChartData, selectData, selectlineChartData } from "../../services/selectors/selectors";
+import { BarChartData, LineChartData } from "../../services/slices/chartsSliceTypes";
+import { TableRecord } from "../../services/slices/tableSliceTypes";
 
 const UserTable = () => {
-  const tableData: TableRecord[] = useSelector((state: RootState) => state.table.data);
-  const lineData: LineChartData = useSelector((state: RootState) => state.charts.lineChartData);
-  const barData: BarChartData = useSelector((state: RootState) => state.charts.barChartData);
+  const tableData: TableRecord[] = useSelector(selectData);
+  const lineData: LineChartData = useSelector(selectlineChartData);
+  const barData: BarChartData = useSelector(selectBarChartData);
   const navigate = useNavigate();
   const dispatch: AppDispatch = useDispatch();
   const token = localStorage.getItem("refreshToken");

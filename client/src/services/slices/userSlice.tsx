@@ -1,14 +1,7 @@
 import { createAsyncThunk, createSlice, PayloadAction } from "@reduxjs/toolkit";
-import { registerUserApi, setCookie } from "../../utils/api";
-import { RegisterData, RegisterResponse } from "../../types/types";
+import { registerUserApi, setCookie } from "../../api/apiEndpoints";
+import { RegisterData, RegisterResponse, UserState } from "./userSliceTypes";
 
-export interface UserState {
-  user: string | null;
-  token: string | null;
-  isLoading: boolean;
-  isAuth: boolean;
-  error: string | null;
-}
 
 const initialState: UserState = {
   user: null,
